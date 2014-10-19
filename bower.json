@@ -1,0 +1,26 @@
+{
+  "name": "cut",
+  "version": "0.0.1",
+  "homepage": "https://github.com/guyue/cut",
+  "authors": [
+    "Hu Jiwei <guyue.jiwei@gmail.com>"
+  ],
+  "description": "cut scenes",
+  "keywords": [
+    "cut",
+    "scenes"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "normalize.css": "3.0.2",
+    "zepto": "1.1.4"
+  }
+}
