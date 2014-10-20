@@ -6,14 +6,14 @@ module.exports = {
     lib: {
         files: [{
             expand: true,
-            cwd: 'bower_components/',
-            src: ['normalize.css/*.css'],
+            cwd: 'bower_components/normalize.css/',
+            src: ['*.css'],
             dest: 'lib/normalize/',
             filter: 'isFile'
         }, {
             expand: true,
-            cwd: 'bower_components/',
-            src: ['animate.css/*.css'],
+            cwd: 'bower_components/animate.css/',
+            src: ['*.css'],
             dest: 'lib/animate/',
             filter: 'isFile'
         }, {
