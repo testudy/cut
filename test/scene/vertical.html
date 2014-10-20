@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vertical Scene</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="address=no" />
+    <link href="../../lib/normalize/normalize.css" rel="stylesheet" />
+    <link href="../../dist/css/cut.css" rel="stylesheet" />
+    <style>
+        .cut .vertical {
+            left: 0;
+        }
+
+        .cut .vertical.forward,
+        .cut .vertical.active.leave.back {
+            top: 100%;
+        }
+
+        .cut .vertical.back,
+        .cut .vertical.active.leave.forward {
+            top: -100%;
+        }
+
+        .cut .vertical.active.back,
+        .cut .vertical.active.forward,
+        .cut .vertical.back.enter,
+        .cut .vertical.forward.enter {
+            top: 0;
+        }
+
+        .shop {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding: 10px 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="cut">
+        <section class="item vertical active" style="background-color: #ff3300;">section 1</section>
+        <section class="item vertical" style="background-color: #fff143;">section 2</section>
+        <section class="item vertical" style="background-color: #0aa344;">section 3</section>
+    </div>
+    <div class="shop">
+        <button id="btnForward">Forward</button>
+        <button id="btnBack">Back</button>
+    </div>
+    <script>
+        (function (global, document) {
+            var cut = document.querySelector('.cut'),
+                btnForward = document.getElementById('btnForward'),
+                btnBack = document.getElementById('btnBack'),
+                callbacks = [];
+
+            cut.addEventListener('transitionend', function (e) {
+                if (e.target.classList.contains('enter')) {
+                    while (callbacks.length) {
+                        callbacks.shift()();
+                    }
+                }
+            }, false);
+
+            btnForward.addEventListener('click', function (e) {
+                var active = document.querySelector('.item.active'),
+                    next = active.nextElementSibling;
+                active.classList.add('forward');
+                active.offsetWidth;
+                next.classList.add('forward');
+                next.offsetWidth;
+                active.classList.add('leave');
+                next.classList.add('enter');
+                callbacks.push(function () {
+                    active.classList.remove('forward', 'leave', 'active');
+                    next.classList.remove('forward', 'enter');
+                    next.classList.add('active');
+                });
+            }, false);
+
+            btnBack.addEventListener('click', function (e) {
+                var active = document.querySelector('.item.active'),
+                    prev = active.previousElementSibling;
+                active.classList.add('back');
+                active.offsetWidth;
+                prev.classList.add('back');
+                prev.offsetWidth;
+                active.classList.add('leave');
+                prev.classList.add('enter');
+                callbacks.push(function () {
+                    active.classList.remove('back', 'leave', 'active');
+                    prev.classList.remove('back', 'enter');
+                    prev.classList.add('active');
+                });
+            }, false);
+        }(this, this.document));
+    </script>
+</body>
+</html>
