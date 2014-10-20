@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Vertical Scene</title>
+    <title>Animate Scene</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -9,29 +9,13 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="format-detection" content="address=no" />
     <link href="../../lib/normalize/normalize.css" rel="stylesheet" />
+    <link href="../../lib/animate/animate.css" rel="stylesheet" />
     <link href="../../dist/css/cut.css" rel="stylesheet" />
     <style>
-        .cut .vertical {
-            left: 0;
+        .item h2,
+        .item p {
+            text-align: center;
         }
-
-        .cut .vertical.forward,
-        .cut .vertical.active.leave.back {
-            top: 100%;
-        }
-
-        .cut .vertical.back,
-        .cut .vertical.active.leave.forward {
-            top: -100%;
-        }
-
-        .cut .vertical.active.back,
-        .cut .vertical.active.forward,
-        .cut .vertical.back.enter,
-        .cut .vertical.forward.enter {
-            top: 0;
-        }
-
         .shop {
             position: fixed;
             bottom: 0;
@@ -44,9 +28,18 @@
 </head>
 <body>
     <div class="cut">
-        <section class="item vertical active" style="background-color: #ff3300;">section 1</section>
-        <section class="item vertical" style="background-color: #fff143;">section 2</section>
-        <section class="item vertical" style="background-color: #0aa344;">section 3</section>
+        <section class="item active" style="background-color: #ff3300;">
+            <h2 class="animated bounce">Animate.css</h2>
+            <p class="animated flip">I have a dream!</p>
+        </section>
+        <section class="item" style="background-color: #fff143;">
+            <h2 class="animated flash">Animate.css</h2>
+            <p class="animated lightSpeedIn">I have a dream!</p>
+        </section>
+        <section class="item" style="background-color: #0aa344;">
+            <h2 class="animated wobble">Animate.css</h2>
+            <p class="animated hinge">I have a dream!</p>
+        </section>
     </div>
     <div class="shop">
         <button id="btnForward">Forward</button>
@@ -64,6 +57,13 @@
                     while (callbacks.length) {
                         callbacks.shift()();
                     }
+                }
+            }, false);
+
+            cut.addEventListener('webkitAnimationStart', function (e) {
+                console.log(e);
+                while (callbacks.length) {
+                    callbacks.shift()();
                 }
             }, false);
 

@@ -59,7 +59,7 @@
                 btnBack = document.getElementById('btnBack'),
                 callbacks = [];
 
-            cut.addEventListener('transitionend', function (e) {
+            cut.addEventListener('transitionEnd', function (e) {
                 if (e.target.classList.contains('enter')) {
                     while (callbacks.length) {
                         callbacks.shift()();
