@@ -13,6 +13,12 @@ module.exports = {
         }, {
             expand: true,
             cwd: 'bower_components/',
+            src: ['animate.css/*.css'],
+            dest: 'lib/animate/',
+            filter: 'isFile'
+        }, {
+            expand: true,
+            cwd: 'bower_components/',
             src: ['zepto/*.js'],
             dest: 'lib/',
             filter: 'isFile'
