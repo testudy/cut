@@ -6,7 +6,7 @@ module.exports = {
         files: [{
             expand: true,
             cwd: 'src/',
-            src: '*/**.less',
+            src: '**/cut.less',
             dest: 'dist/',
             filter: 'isFile',
             rename: function (dest, src, options) {
@@ -14,6 +14,9 @@ module.exports = {
                 src = src.replace(/\.less$/, '.css');
                 return path.join(dest, src);
             }
-        }]
+        }],
+        options: {
+            compress: true
+        }
     }
 };
