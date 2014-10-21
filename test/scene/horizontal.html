@@ -11,6 +11,16 @@
     <link href="../../lib/normalize/normalize.css" rel="stylesheet" />
     <link href="../../dist/css/layout.css" rel="stylesheet" />
     <link href="../../dist/css/horizontal.css" rel="stylesheet" />
+    <style>
+        .shop {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding: 10px 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div class="cut">
@@ -29,7 +39,7 @@
                 btnBack = document.getElementById('btnBack'),
                 callbacks = [];
 
-            cut.addEventListener('transitionEnd', function (e) {
+            cut.addEventListener('transitionend', function (e) {
                 if (e.target.classList.contains('enter')) {
                     while (callbacks.length) {
                         callbacks.shift()();
