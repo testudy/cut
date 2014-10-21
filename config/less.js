@@ -6,7 +6,7 @@ module.exports = {
         files: [{
             expand: true,
             cwd: 'src/',
-            src: '**/cut.less',
+            src: '**/*.less',
             dest: 'dist/',
             filter: 'isFile',
             rename: function (dest, src, options) {
