@@ -29,14 +29,14 @@
         <section class="item horizontal" style="background-color: #0aa344;">section 3</section>
     </div>
     <div class="shop">
-        <button id="btnForward">Forward</button>
-        <button id="btnBack">Back</button>
+        <button id="btnNext">Next</button>
+        <button id="btnPrev">Prev</button>
     </div>
     <script>
         (function (global, document) {
             var cut = document.querySelector('.cut'),
-                btnForward = document.getElementById('btnForward'),
-                btnBack = document.getElementById('btnBack'),
+                btnNext = document.getElementById('btnNext'),
+                btnPrev = document.getElementById('btnPrev'),
                 callbacks = [];
 
             cut.addEventListener('transitionend', function (e) {
@@ -47,34 +47,34 @@
                 }
             }, false);
 
-            btnForward.addEventListener('click', function (e) {
+            btnNext.addEventListener('click', function (e) {
                 var active = document.querySelector('.item.active'),
                     next = active.nextElementSibling;
-                active.classList.add('forward');
+                active.classList.add('next');
                 active.offsetWidth;
-                next.classList.add('forward');
+                next.classList.add('next');
                 next.offsetWidth;
                 active.classList.add('leave');
                 next.classList.add('enter');
                 callbacks.push(function () {
-                    active.classList.remove('forward', 'leave', 'active');
-                    next.classList.remove('forward', 'enter');
+                    active.classList.remove('next', 'leave', 'active');
+                    next.classList.remove('next', 'enter');
                     next.classList.add('active');
                 });
             }, false);
 
-            btnBack.addEventListener('click', function (e) {
+            btnPrev.addEventListener('click', function (e) {
                 var active = document.querySelector('.item.active'),
                     prev = active.previousElementSibling;
-                active.classList.add('back');
+                active.classList.add('prev');
                 active.offsetWidth;
-                prev.classList.add('back');
+                prev.classList.add('prev');
                 prev.offsetWidth;
                 active.classList.add('leave');
                 prev.classList.add('enter');
                 callbacks.push(function () {
-                    active.classList.remove('back', 'leave', 'active');
-                    prev.classList.remove('back', 'enter');
+                    active.classList.remove('prev', 'leave', 'active');
+                    prev.classList.remove('prev', 'enter');
                     prev.classList.add('active');
                 });
             }, false);
