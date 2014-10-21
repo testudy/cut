@@ -1,5 +1,5 @@
 (function ($, document) {
-    "use strict";
+    'use strict';
 
     /**
      * 获取特定厂商前缀的属性
@@ -37,9 +37,6 @@
         return supportedProp;
     };
 
-    $.support.transition = $.vendor('transition');
-    $.support.transitionDelay = $.vendor('transitionDelay');
-
     /*
      * Transition
      * ----------
@@ -47,12 +44,23 @@
      */
     $.support.transitionend = (function () {
         var events = {
-                "WebkitTransition": "webkitTransitionEnd",
-                "MozTransition": "transitionend",
-                "OTransition": "oTransitionEnd otransitionend",
-                "transition": "transitionend"
+                'WebkitTransition': 'webkitTransitionEnd',
+                'MozTransition': 'transitionend',
+                'OTransition': 'oTransitionEnd otransitionend',
+                'transition': 'transitionend'
             };
 
-        return events[$.support.transition];
+        return events[$.vendor('transition')];
+    }());
+
+    $.support.animationstart = (function () {
+        var events = {
+            'WebkitAnimation': 'webkitAnimationStart',
+            'MozAnimation': 'animationstart',
+            'OAnimation': 'oAnimationStart oAnimationStart',
+            'animation': 'animationstart'
+        };
+
+        return events[$.vendor('animation')];
     }());
 }(this.Zepto, this.document));

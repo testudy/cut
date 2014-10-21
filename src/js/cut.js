@@ -25,8 +25,14 @@
             this.$element.on('touchcancel', cycle);
         }
 
-        $(document).on('click.cut', '[data-slide]', function () {
-            that.slide($(this).data('slide'));
+        $(document).on('click.cut', '[data-cut]', function () {
+            that.slide($(this).data('cut'));
+        });
+
+        this.$element.on($.support.transitionend + ' ' +
+                $.support.animationstart, function () {
+
+            that.$element.trigger('scene:entered');
         });
     }
 
@@ -47,10 +53,10 @@
 
             var selector = '.enter,.leave';
 
-            if ($.support.transitionend &&
+            if (($.support.transitionend || support.animationstart) &&
                     this.$element.find(selector).length) {
 
-                this.$element.trigger($.support.transitionend);
+                that.$element.trigger('scene:entered');
                 this.cycle(true);
             }
 
@@ -87,7 +93,7 @@
             }
 
             if (this.sliding) {
-                this.$element.one('slid', function () {
+                this.$element.one('entered', function () {
                     that.to(pos);
                 });
                 return this;
@@ -138,7 +144,7 @@
                 $next = this.$element.find('.item')[fallback]();
             }
 
-            e = $.Event('slide', {
+            e = $.Event('enter', {
                 relatedTarget: $next[0],
                 direction: type
             });
@@ -149,7 +155,7 @@
 
             if (this.$indicators.length) {
                 this.$indicators.find('.active').removeClass('active');
-                this.$element.one('slid', function () {
+                this.$element.one('entered', function () {
                     var index = that.getActiveIndex(),
                         $nextIndicator = that.$indicators.children().eq(index);
 
@@ -164,26 +170,25 @@
                 return;
             }
 
-            // 对于不支持transitionend的浏览器，只有当force类强制执行的时候才添加效果
-            if ($.support.transitionend) {
+            if ($.support.transitionend || $.support.animationstart) {
+                this.$element.one('scene:entered', function () {
+                    $next.removeClass('enter ' + type).addClass('active');
+                    $active.removeClass('active leave ' + type);
+                    that.sliding = false;
+                    global.setTimeout(function () {
+                        that.$element.trigger('entered');
+                    }, 0);
+                });
                 $active.addClass(type);
                 $next.addClass(type);
                 $next[0].offsetWidth; //force reflow
                 $active.addClass('leave');
                 $next.addClass('enter');
-                this.$element.one($.support.transitionend, function () {
-                    $next.removeClass('enter ' + type).addClass('active');
-                    $active.removeClass('active leave ' + type);
-                    that.sliding = false;
-                    global.setTimeout(function () {
-                        that.$element.trigger('slid');
-                    }, 0);
-                });
             } else {
                 $next.addClass('active');
                 $active.removeClass('active');
                 that.sliding = false;
-                that.$element.trigger('slid');
+                that.$element.trigger('entered');
             }
 
             if (isCycling) {
@@ -208,7 +213,7 @@
             if (typeof option === 'string') {
                 action = option;
             } else {
-                action = options.slide;
+                action = options.cut;
             }
 
             if (!data) {
@@ -230,7 +235,7 @@
 
     $.fn.cut.defaults = {
         // 自动循环间隔
-        interval: 5000,
+        interval: false,
         pause: 'hover'
     };
 }(this, this.Zepto, this.document));
