@@ -1,7 +1,6 @@
 /*jslint ass: false */
 (function (global, $, document) {
     'use strict';
-
     /*
      * Cut类
      * @class Cut
