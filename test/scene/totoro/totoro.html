@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vertical Scene</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="address=no" />
+    <link href="../../../lib/normalize/normalize.css" rel="stylesheet" />
+    <link href="../../../lib/animate/animate.css" rel="stylesheet" />
+    <link href="../../../dist/css/layout.css" rel="stylesheet" />
+    <link href="../../../dist/css/vertical.css" rel="stylesheet" />
+
+    <style>
+        .shop {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding: 10px 0;
+            width: 100%;
+            text-align: center;
+        }
+        .item{
+            font-size:0; 
+        }
+        .item:after{
+            display: inline-block;
+            width: 0;
+            height: 100%;
+            vertical-align: middle;
+            content: ''
+        }
+        .stage{
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            vertical-align: middle;
+        }
+        #stage1 h3{
+            font-size: 26px;
+            font-style: normal;
+            color: #666666;
+        }
+        #stage2{
+            position: relative;
+            height: 100%;
+        }
+        #posterBg{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+             -webkit-filter: blur(20px); /* Chrome, Opera */
+               -moz-filter: blur(20px);
+                -ms-filter: blur(20px);    
+                    filter: blur(20px);
+        }
+        #poster{
+            height: 65%;
+            font-size: 0;
+        }
+        #poster:after{
+            display: inline-block;
+            width: 0;
+            height: 100%;
+            vertical-align: middle;
+            content: ''
+        }
+        #poster img{
+            display: inline-block;
+            width: 50%;
+            height: auto;
+            max-height: 100%;
+            border: 5px solid #fff;
+            vertical-align: middle;
+        }
+        #info{
+            height: 35%;
+            text-align: left;
+            background: #ffffff;
+        }
+        #info h3{
+            padding: 20px;
+            margin: 0;
+            font-size: 18px;
+            color: #555555;
+        }
+        #info span{
+            display: inline-block;
+            font-size: 14px;
+            padding: .5em;
+            margin: .5em;
+            color: #282a32;
+            border: 1px solid rgba(40,42,50,0.2);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="cut">
+        <section class="item vertical active">
+            <div class="stage" id="stage1">
+                <img class="animated fadeInDown" src="img/totoro.svg">
+                <h3 class="animated fadeInUp">吉卜力工作室</h3>
+            </div>
+        </section>
+        <section class="item vertical" >
+            <div class="stage" id="stage2">
+                <img id="posterBg" class="animated zoomIn" src="img/poster.jpg" alt="龙猫电影海报">
+                <div id="poster">
+                    <img src="img/poster.jpg" alt="龙猫电影海报">
+                </div>
+                <div id="info">
+                    <h3>龙猫（英文名：My Neighbor Totoro）</h3>
+                    <span>导演：宫崎骏</span>
+                    <span>日高法子</span>
+                    <span>坂本千夏</span>
+                    <span>糸井重里</span>
+                    <span>1988-04-16（日本）</span>
+                    <span>影片信息与剧情 >></span>
+                </div>
+            </div>
+        </section>
+        <section class="item vertical" >section 3</section>
+    </div>
+    <div class="shop">
+        <button id="btnNext">Next</button>
+        <button id="btnPrev">Prev</button>
+    </div>
+    <script>
+        (function (global, document) {
+            var cut = document.querySelector('.cut'),
+                btnNext = document.getElementById('btnNext'),
+                btnPrev = document.getElementById('btnPrev'),
+                callbacks = [];
+
+            cut.addEventListener('transitionend', function (e) {
+                if (e.target.classList.contains('enter')) {
+                    while (callbacks.length) {
+                        callbacks.shift()();
+                    }
+                }
+            }, false);
+
+            btnNext.addEventListener('click', function (e) {
+                var active = document.querySelector('.item.active'),
+                    next = active.nextElementSibling;
+                active.classList.add('next');
+                active.offsetWidth;
+                next.classList.add('next');
+                next.offsetWidth;
+                active.classList.add('leave');
+                next.classList.add('enter');
+                callbacks.push(function () {
+                    active.classList.remove('next', 'leave', 'active');
+                    next.classList.remove('next', 'enter');
+                    next.classList.add('active');
+                });
+            }, false);
+
+            btnPrev.addEventListener('click', function (e) {
+                var active = document.querySelector('.item.active'),
+                    prev = active.previousElementSibling;
+                active.classList.add('prev');
+                active.offsetWidth;
+                prev.classList.add('prev');
+                prev.offsetWidth;
+                active.classList.add('leave');
+                prev.classList.add('enter');
+                callbacks.push(function () {
+                    active.classList.remove('prev', 'leave', 'active');
+                    prev.classList.remove('prev', 'enter');
+                    prev.classList.add('active');
+                });
+            }, false);
+        }(this, this.document));
+    </script>
+</body>
+</html>
