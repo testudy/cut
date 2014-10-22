@@ -23,7 +23,8 @@
             text-align: center;
         }
         .item{
-            font-size:0; 
+            font-size:0;
+            overflow: hidden; 
         }
         .item:after{
             display: inline-block;
@@ -97,7 +98,30 @@
             color: #282a32;
             border: 1px solid rgba(40,42,50,0.2);
         }
+        
+        #stage3{
+            height: 100%;
+            display: -moz-box;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: box;
+            display: flex
+        }
 
+        #stage3 .column{
+            -moz-box-flex: 1;
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            box-flex: 1;
+            flex: 1;
+            margin: 10px;
+        }
+
+        #stage3 .column img{
+            width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -125,7 +149,23 @@
                 </div>
             </div>
         </section>
-        <section class="item vertical" >section 3</section>
+        <section class="item vertical" >
+            <div class="stage" id="stage3">
+                <div class="column">
+                    <img class="animated fadeInDown" src="http://img3.douban.com/view/photo/photo/public/p537659034.jpg">
+                    <img class="animated fadeInDown" src="http://img5.douban.com/view/photo/photo/public/p537657689.jpg">
+                    <img class="animated fadeInDown" src="http://img3.douban.com/view/photo/photo/public/p537657572.jpg">
+                    <img class="animated fadeInDown" src="http://img3.douban.com/view/photo/photo/public/p519124980.jpg">
+                    <img class="animated fadeInDown" src="http://img5.douban.com/view/photo/photo/public/p518850148.jpg">
+                </div>
+                <div class="column">
+                    <img class="animated fadeInDown" src="http://img5.douban.com/view/photo/photo/public/p537660958.jpg">
+                    <img class="animated fadeInDown" src="http://img5.douban.com/view/photo/photo/public/p537660268.jpg">
+                    <img class="animated fadeInDown" src="http://img3.douban.com/view/photo/photo/public/p2191700031.jpg">
+                    <img class="animated fadeInDown" src="http://img3.douban.com/view/photo/photo/public/p2191700024.jpg">
+                </div>
+            </div>
+        </section>
     </div>
     <div class="shop">
         <button id="btnNext">Next</button>
