@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Roll Scene</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="address=no" />
+    <link href="../../lib/normalize/normalize.css" rel="stylesheet" />
+    <link href="../../dist/css/layout.css" rel="stylesheet" />
+    <style>
+.cut .roll {
+    width: 0;
+    -webkit-transition: 0.6s ease-in-out;
+    -moz-transition: 0.6s ease-in-out;
+    -o-transition: 0.6s ease-in-out;
+    transition: 0.6s ease-in-out;
+    overflow: hidden;
+}
+
+.cut .roll.active {
+    width: 100%;
+}
+
+.cut .roll.next,
+.cut .roll.active.leave.prev {
+    width: 0;
+}
+
+.cut .roll.prev,
+.cut .roll.active.leave.next {
+    width: 0;
+}
+
+.cut .roll.active.prev,
+.cut .roll.active.next,
+.cut .roll.prev.enter,
+.cut .roll.next.enter {
+    width: 100%;
+}
+
+.cut .roll-container {
+    position: absolute;
+    height: 100%;
+    min-width: 375px;
+}
+
+.cut .roll.next,
+.cut .roll.active.prev,
+.cut .roll.next .roll-container,
+.cut .roll.active.prev .roll-container {
+    right: 0;
+    left: auto;
+}
+
+.cut .roll.prev,
+.cut .roll.active.next,
+.cut .roll.prev .roll-container,
+.cut .roll.active.next .roll-container {
+    right: auto;
+    left: 0;
+}
+        .shop {
+            position: fixed;
+            z-index: 10;
+            bottom: 0;
+            left: 0;
+            padding: 10px 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="cut">
+        <section class="item roll active" style="background-color: #ff3300;">
+            <div class="roll-container">
+                roll 1
+            </div>
+        </section>
+        <section class="item roll" style="background-color: #fff143;">
+            <div class="roll-container">
+                roll 2
+            </div>
+        </section>
+        <section class="item roll" style="background-color: #0aa344;">
+            <div class="roll-container">
+                roll 3
+            </div>
+        </section>
+    </div>
+    <div class="shop">
+        <button id="btnPrev">Prev</button>
+        <button id="btnNext">Next</button>
+    </div>
+    <script>
+        (function (global, document) {
+            var cut = document.querySelector('.cut'),
+                btnNext = document.getElementById('btnNext'),
+                btnPrev = document.getElementById('btnPrev'),
+                callbacks = [];
+
+            cut.addEventListener('transitionend', function (e) {
+                if (e.target.classList.contains('enter')) {
+                    while (callbacks.length) {
+                        callbacks.shift()();
+                    }
+                }
+            }, false);
+
+            btnNext.addEventListener('click', function (e) {
+                var active = document.querySelector('.item.active'),
+                    next = active.nextElementSibling;
+                active.classList.add('next');
+                active.offsetWidth;
+                next.classList.add('next');
+                next.offsetWidth;
+                active.classList.add('leave');
+                next.classList.add('enter');
+                callbacks.push(function () {
+                    active.classList.remove('next', 'leave', 'active');
+                    next.classList.remove('next', 'enter');
+                    next.classList.add('active');
+                });
+            }, false);
+
+            btnPrev.addEventListener('click', function (e) {
+                var active = document.querySelector('.item.active'),
+                    prev = active.previousElementSibling;
+                active.classList.add('prev');
+                active.offsetWidth;
+                prev.classList.add('prev');
+                prev.offsetWidth;
+                active.classList.add('leave');
+                prev.classList.add('enter');
+                callbacks.push(function () {
+                    active.classList.remove('prev', 'leave', 'active');
+                    prev.classList.remove('prev', 'enter');
+                    prev.classList.add('active');
+                });
+            }, false);
+        }(this, this.document));
+    </script>
+</body>
+</html>
