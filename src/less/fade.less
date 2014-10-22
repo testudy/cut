@@ -6,20 +6,14 @@
     transition: 0.6s ease-in-out opacity;
 }
 
-.cut .fade.active {
-    opacity: 1;
-}
-
 .cut .fade.next,
-.cut .fade.active.leave.prev {
-    opacity: 0;
-}
-
+.cut .fade.active.leave.prev,
 .cut .fade.prev,
 .cut .fade.active.leave.next {
     opacity: 0;
 }
 
+.cut .fade.active,
 .cut .fade.active.prev,
 .cut .fade.active.next,
 .cut .fade.prev.enter,

@@ -1,1 +1,1 @@
-html,body{width:100%;height:100%;overflow:hidden}.cut{position:relative;width:100%;height:100%}.cut .item{position:absolute;top:0;left:0;display:none;width:100%;height:100%}.cut .item.active,.cut .item.next,.cut .item.prev{display:block}
+html,body{width:100%;height:100%;overflow:hidden}.cut{position:relative;width:100%;height:100%}.cut .item{position:absolute;top:0;left:0;display:none;width:100%;height:100%}.cut .item.active,.cut .item.next,.cut .item.prev{display:block}.cut .item.enter{z-index:1}
