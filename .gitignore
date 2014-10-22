@@ -2,5 +2,7 @@ bower_components
 node_modules
 coverage
 lib
+demo
 .idea
 *.swp
+.DS_Store
