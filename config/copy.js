@@ -22,6 +22,16 @@ module.exports = {
             src: ['zepto/*.js'],
             dest: 'lib/',
             filter: 'isFile'
+        }, {
+            expand: false,
+            src: ['bower_components/zepto-src/src/touch.js'],
+            dest: 'lib/zepto/touch.js',
+            filter: 'isFile'
+        }, {
+            expand: false,
+            src: ['bower_components/zepto-src/src/data.js'],
+            dest: 'lib/zepto/data.js',
+            filter: 'isFile'
         }]
     }
 };
