@@ -29,9 +29,11 @@
         });
 
         this.$element.on($.support.transitionend + ' ' +
-                $.support.animationstart, function () {
+                $.support.animationend, function (e) {
 
-            that.$element.trigger('scene:entered');
+            if ($(e.target).hasClass('item')) {
+                that.$element.trigger('scene:entered');
+            }
         });
     }
 
@@ -52,7 +54,7 @@
 
             var selector = '.enter,.leave';
 
-            if (($.support.transitionend || support.animationstart) &&
+            if (($.support.transitionend || support.animationend) &&
                     this.$element.find(selector).length) {
 
                 that.$element.trigger('scene:entered');
@@ -169,7 +171,7 @@
                 return;
             }
 
-            if ($.support.transitionend || $.support.animationstart) {
+            if ($.support.transitionend || $.support.animationend) {
                 this.$element.one('scene:entered', function () {
                     $next.removeClass('enter ' + type).addClass('active');
                     $active.removeClass('active leave ' + type);

@@ -57,8 +57,19 @@
         var events = {
             'WebkitAnimation': 'webkitAnimationStart',
             'MozAnimation': 'animationstart',
-            'OAnimation': 'oAnimationStart oAnimationStart',
+            'OAnimation': 'oAnimationStart oAnimationstart',
             'animation': 'animationstart'
+        };
+
+        return events[$.vendor('animation')];
+    }());
+
+    $.support.animationend = (function () {
+        var events = {
+            'WebkitAnimation': 'webkitAnimationEnd',
+            'MozAnimation': 'animationend',
+            'OAnimation': 'oAnimationEnd oAnimationend',
+            'animation': 'animationend'
         };
 
         return events[$.vendor('animation')];
