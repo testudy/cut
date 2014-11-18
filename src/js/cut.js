@@ -28,12 +28,14 @@
             that.slide($(this).data('cut'));
         });
 
-        this.$element.on($.support.transitionend + ' ' +
-                $.support.animationend, function (e) {
-
+        this.$element.on($.support.transitionend + ' ' + $.support.animationend, function (e) {
             if ($(e.target).hasClass('item')) {
                 that.$element.trigger('scene:entered');
             }
+        });
+
+        $(global).on('touchstart', function (e) {
+            e.preventDefault();
         });
     }
 
@@ -52,9 +54,10 @@
                 this.paused = true;
             }
 
-            var selector = '.enter,.leave';
+            var selector = '.enter,.leave',
+                that = this;
 
-            if (($.support.transitionend || support.animationend) &&
+            if (($.support.transitionend || $.support.animationend) &&
                     this.$element.find(selector).length) {
 
                 that.$element.trigger('scene:entered');

@@ -7,5 +7,9 @@ module.exports = {
 
     dist: {
         src: ['dist/**/*']
+    },
+
+    memory: {
+        src: ['demo/memory/dist/**/*']
     }
 };

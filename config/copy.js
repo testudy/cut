@@ -33,5 +33,15 @@ module.exports = {
             dest: 'lib/zepto/data.js',
             filter: 'isFile'
         }]
+    },
+
+    memory: {
+        files: [{
+            expand: true,
+            cwd: 'demo/memory/app/',
+            src: ['**/*'],
+            dest: 'demo/memory/dist/',
+            filter: 'isFile'
+        }]
     }
 };

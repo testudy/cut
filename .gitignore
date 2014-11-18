@@ -3,6 +3,7 @@ node_modules
 coverage
 lib
 demo
+.tmp
 .idea
 *.swp
 .DS_Store
