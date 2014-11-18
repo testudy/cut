@@ -6,7 +6,7 @@ module.exports = {
         length: 8
     },
     images: {
-        src: 'demo/memory/dist/**/*.{jpg,jpeg,gif,png,webp,svg,js,css}',
+        src: 'demo/memory/dist/**/*.{js,css}',
         //dest: 'demo/memory/dist/'
     }
 };

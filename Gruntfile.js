@@ -9,7 +9,10 @@ module.exports = function (grunt) {
         less: require('./config/less'),
         useminPrepare: require('./config/useminPrepare'),
         filerev: require('./config/filerev'),
-        usemin: require('./config/usemin')
+        usemin: require('./config/usemin'),
+        svgmin: require('./config/svgmin'),
+        imagemin: require('./config/imagemin'),
+        cssUrlEmbed: require('./config/embed')
     });
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -22,6 +25,10 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-usemin');
 
+    grunt.loadNpmTasks('grunt-svgmin');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-css-url-embed');
+
     grunt.registerTask('copylib', ['clean:lib', 'copy:lib']);
     grunt.registerTask('build', ['clean:dist', 'less']);
     grunt.registerTask('builddemo', [
@@ -32,6 +39,9 @@ module.exports = function (grunt) {
         'cssmin:generated',
         'uglify:generated',
         'filerev',
-        'usemin'
+        'usemin',
+        'svgmin',
+        'imagemin',
+        'cssUrlEmbed'
     ]);
 };
