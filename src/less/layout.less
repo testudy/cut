@@ -29,3 +29,13 @@ body {
 .cut .item.enter {
     z-index: 1;
 }
+.cut .item .animated {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+}
+
+.cut .item.active .animated {
+    -webkit-animation-play-state: running;
+    animation-play-state: running;
+}
+
