@@ -42,6 +42,7 @@ module.exports = function (grunt) {
         'usemin',
         'svgmin',
         'imagemin',
-        'cssUrlEmbed'
+        'cssUrlEmbed',
+        'clean:memory-clean'
     ]);
 };
