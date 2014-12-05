@@ -9,13 +9,9 @@ PROJECT 目录结构:
 -----------------
 
 (project name)
-
     - index.html
-    
     - (project name).css
-    
     - img
-    
         - 图片音乐等静态资源
 
 BUILD PROJECT:
