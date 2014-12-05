@@ -6,13 +6,15 @@ module.exports = function (grunt) {
         clean: require('./config/clean'),
         copy: require('./config/copy'),
         concat: require('./config/concat'),
+        cssmin: require('./config/cssmin'),
         less: require('./config/less'),
         useminPrepare: require('./config/useminPrepare'),
         filerev: require('./config/filerev'),
         usemin: require('./config/usemin'),
         svgmin: require('./config/svgmin'),
         imagemin: require('./config/imagemin'),
-        cssUrlEmbed: require('./config/embed')
+        cssUrlEmbed: require('./config/embed'),
+        cssUrlRewrite: require('./config/rewrite.js')
     });
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -28,6 +30,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-svgmin');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-css-url-embed');
+    grunt.loadNpmTasks('grunt-css-url-rewrite');
 
     grunt.registerTask('copylib', ['clean:lib', 'copy:lib']);
     grunt.registerTask('build', ['clean:dist', 'less']);
@@ -38,11 +41,12 @@ module.exports = function (grunt) {
         'concat:generated',
         'cssmin:generated',
         'uglify:generated',
+        'cssUrlRewrite:memory',
         'filerev',
         'usemin',
-        'svgmin',
+        //'svgmin',
         'imagemin',
-        'cssUrlEmbed',
+        'cssUrlEmbed:memory',
         'clean:memory-clean'
     ]);
 };

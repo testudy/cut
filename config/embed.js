@@ -1,15 +1,14 @@
 'use strict';
 
 module.exports = {
+    options: {
+        skipUrlsLargerThan: '5 MB'
+    },
     memory: {
-        options: {
-            skipUrlsLargerThan: '5 MB'
-        },
-
         files: [{
             expand: true,
             cwd: 'demo/memory/dist',
-            src: ['*.css'],   // Actual patterns to match
+            src: ['main*.css'],   // Actual patterns to match
             dest: 'demo/memory/dist'
         }]
     }

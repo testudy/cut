@@ -13,6 +13,6 @@ module.exports = {
         src: ['demo/memory/dist/**/*']
     },
     'memory-clean': {
-        src: ['demo/memory/dist/img', 'demo/memory/dist/memory.*.css']
+        src: ['demo/memory/dist/img/*.{png,jpg,gif,svg}', 'demo/memory/dist/memory.*.css']
     }
 };
