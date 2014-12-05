@@ -1,7 +1,5 @@
 'use strict';
 
-var path = require('path');
-
 module.exports = {
     lib: {
         files: [{
@@ -31,16 +29,6 @@ module.exports = {
             expand: false,
             src: ['bower_components/zepto-src/src/data.js'],
             dest: 'lib/zepto/data.js',
-            filter: 'isFile'
-        }]
-    },
-
-    memory: {
-        files: [{
-            expand: true,
-            cwd: 'demo/memory/app/',
-            src: ['**/*'],
-            dest: 'demo/memory/dist/',
             filter: 'isFile'
         }]
     }

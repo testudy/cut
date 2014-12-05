@@ -1,6 +1,9 @@
 module.exports = function (grunt) {
     'use strict';
 
+    var config = require('./config/config'),
+        fs = require('fs');
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         clean: require('./config/clean'),
@@ -16,6 +19,7 @@ module.exports = function (grunt) {
         cssUrlEmbed: require('./config/embed'),
         cssUrlRewrite: require('./config/rewrite.js')
     });
+
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-less');
@@ -33,20 +37,52 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-css-url-rewrite');
 
     grunt.registerTask('copylib', ['clean:lib', 'copy:lib']);
-    grunt.registerTask('build', ['clean:dist', 'less']);
-    grunt.registerTask('builddemo', [
-        'clean:memory',
-        'copy:memory',
-        'useminPrepare',
-        'concat:generated',
-        'cssmin:generated',
-        'uglify:generated',
-        'cssUrlRewrite:memory',
-        'filerev',
-        'usemin',
-        //'svgmin',
-        'imagemin',
-        'cssUrlEmbed:memory',
-        'clean:memory-clean'
-    ]);
+    grunt.registerTask('buildsrc', ['clean:dist', 'less']);
+
+    grunt.registerTask('build', 'test desc', function (project) {
+        if (!fs.existsSync(config.getPath(project))) {
+            console.log('编译的' + project + '项目不存在');
+            return;
+        }
+
+        console.log('Build ' + project + ' project start!');
+
+        grunt.config.set('clean.' + project, config.createClean(project));
+        grunt.config.set('copy.' + project, config.createCopy(project));
+        grunt.config.set('useminPrepare', config.createUseminPrepare(project));
+        grunt.config.set('cssUrlRewrite.' + project, config.createRewrite(project));
+        grunt.config.set('filerev', config.createFilerev(project));
+        grunt.config.set('usemin', config.createUsemin(project));
+        grunt.config.set('imagemin.' + project, config.createImagemin(project));
+        grunt.config.set('cssUrlEmbed.' + project, config.createEmbed(project));
+
+        grunt.task.run([
+            'clean:' + project,
+            'copy:' + project,
+            'useminPrepare',
+            'concat:generated',
+            'cssmin:generated',
+            'uglify:generated',
+            'cssUrlRewrite:' + project,
+            'filerev',
+            'usemin',
+            //'svgmin',
+            'imagemin:' + project,
+            'cssUrlEmbed:' + project
+        ]);
+    });
+
+    grunt.registerTask('clear', 'test desc', function (project) {
+        if (!fs.existsSync(config.getPath(project))) {
+            console.log('清理冗余的' + project + '项目不存在');
+            return;
+        }
+        console.log('clear start');
+        grunt.config.set('clean.' + project + '-clear', config.createClear(project));
+        console.log(grunt.config.get('clean.' + project + '-clear'));
+        grunt.task.run([
+            'clean:' + project + '-clear'
+        ]);
+        console.log('clear end');
+    });
 };
