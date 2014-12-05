@@ -8,10 +8,10 @@ Cut scenes
 PROJECT 目录结构:
 -----------------
 (project name)
-    |---index.html
-    |---(project name).css
-    |---img
-        |---图片音乐等静态资源
+    - index.html
+    - (project name).css
+    - img
+        - 图片音乐等静态资源
 
 BUILD PROJECT:
 --------------
@@ -23,6 +23,7 @@ builddemo:(project name)
 cleardemo:(project name)
 
 // 手动修改生成的HTML文件头部，使iOS和Android加载对应的资源文件
+```
     <script>
     (function (ua) {
         if (/Linux|Android/.test(ua)) {
@@ -32,3 +33,4 @@ cleardemo:(project name)
         }
     }(navigator.userAgent));
     </script>
+```
