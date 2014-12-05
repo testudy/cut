@@ -39,7 +39,7 @@ module.exports = function (grunt) {
     grunt.registerTask('copylib', ['clean:lib', 'copy:lib']);
     grunt.registerTask('buildsrc', ['clean:dist', 'less']);
 
-    grunt.registerTask('build', 'test desc', function (project) {
+    grunt.registerTask('builddemo', 'Build demo project', function (project) {
         if (!fs.existsSync(config.getPath(project))) {
             console.log('编译的' + project + '项目不存在');
             return;
@@ -72,7 +72,7 @@ module.exports = function (grunt) {
         ]);
     });
 
-    grunt.registerTask('clear', 'test desc', function (project) {
+    grunt.registerTask('cleardemo', '清除冗余文件', function (project) {
         if (!fs.existsSync(config.getPath(project))) {
             console.log('清理冗余的' + project + '项目不存在');
             return;
