@@ -2,18 +2,18 @@
 
 module.exports = {
     getPath: function (project) {
-        return 'demo/' + project;
+        return 'project/' + project;
     },
 
     createClean: function (project) {
         return {
-            src: ['demo/' + project + '/dist/**/*']
+            src: ['project/' + project + '/dist/**/*']
         };
     },
 
     createClear: function (project) {
         return {
-            src: ['demo/' + project + '/dist/img/*.{png,jpg,gif,svg}', 'demo/' + project + '/dist/' + project + '.*.css']
+            src: ['project/' + project + '/dist/img/*.{png,jpg,gif,svg}', 'project/' + project + '/dist/' + project + '.*.css']
         };
     },
 
@@ -21,9 +21,9 @@ module.exports = {
         return {
             files: [{
                 expand: true,
-                cwd: 'demo/' + project + '/app/',
+                cwd: 'project/' + project + '/app/',
                 src: ['**/*'],
-                dest: 'demo/' + project + '/dist/',
+                dest: 'project/' + project + '/dist/',
                 filter: 'isFile'
             }]
         };
@@ -31,10 +31,10 @@ module.exports = {
 
     createUseminPrepare: function (project) {
         return {
-            html: 'demo/' + project + '/dist/index.html',
+            html: 'project/' + project + '/dist/index.html',
             options: {
-                //root: 'demo/' + project + '/dist',
-                dest: 'demo/' + project + '/dist'
+                //root: 'project/' + project + '/dist',
+                dest: 'project/' + project + '/dist'
             }
         };
     },
@@ -42,14 +42,14 @@ module.exports = {
     createRewrite: function (project) {
         return {
             expand: true,
-            cwd: 'demo/' + project + '/dist/',
+            cwd: 'project/' + project + '/dist/',
             src: ['**/*.css'],
-            dest: 'demo/' + project + '/dist/',
+            dest: 'project/' + project + '/dist/',
             ext: '.android.css',
             filter: 'isFile',
             options: {
                 skipExternal: true,
-                basePath: 'demo/' + project + '/dist/',
+                basePath: 'project/' + project + '/dist/',
                 rewriteUrl: function(url, options, dataURI) {
                     var svgRE = /\.svg$/;
                     if (svgRE.test(url)) {
@@ -72,18 +72,18 @@ module.exports = {
                 length: 8
             },
             images: {
-                src: 'demo/' + project + '/dist/**/*.{js,css}',
-                //dest: 'demo/' + project + '/dist/'
+                src: 'project/' + project + '/dist/**/*.{js,css}',
+                //dest: 'project/' + project + '/dist/'
             }
         };
     },
 
     createUsemin: function (project) {
         return {
-            html: 'demo/' + project + '/dist/index.html',
+            html: 'project/' + project + '/dist/index.html',
             options: {
-                //dest: 'demo/' + project + '/dist/index.html',
-                //assetsDirs: ['demo/' + project + '/dist']
+                //dest: 'project/' + project + '/dist/index.html',
+                //assetsDirs: ['project/' + project + '/dist']
             }
         };
     },
@@ -97,9 +97,9 @@ module.exports = {
             },
             files: [{
                 expand: true,
-                cwd: 'demo/' + project + '/app/img',
+                cwd: 'project/' + project + '/app/img',
                 src: ['*.{png,jpg,gif}'],   // Actual patterns to match
-                dest: 'demo/' + project + '/dist/img'
+                dest: 'project/' + project + '/dist/img'
             }]
         };
     },
@@ -108,9 +108,9 @@ module.exports = {
         return {
             files: [{
                 expand: true,
-                cwd: 'demo/' + project + '/dist',
+                cwd: 'project/' + project + '/dist',
                 src: ['main*.css'],   // Actual patterns to match
-                dest: 'demo/' + project + '/dist'
+                dest: 'project/' + project + '/dist'
             }]
         };
     }

@@ -31,9 +31,9 @@ module.exports = {
         },
         files: [{
             expand: true,
-            cwd: 'demo/memory/app/img',
+            cwd: 'project/memory/app/img',
             src: '*.svg',
-            dest: 'demo/memory/dist/img',
+            dest: 'project/memory/dist/img',
             //filter: 'isFile'
         }]
     }
