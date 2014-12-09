@@ -33,6 +33,9 @@ index.html标注
     <!-- endbuild -->
 ```
 
+img文件处理
+为了保证Android系统的流畅运行，对每个svg图片建立对应的android.png图片，放置在img目录即可，css文件不用处理
+
 
 BUILD PROJECT:
 --------------
