@@ -8,11 +8,29 @@ Cut scenes
 PROJECT 目录结构:
 -----------------
 ```
-(project name)
+(project name)/app/
     index.html
     (project name).css
-    img
+    img/
         图片音乐等静态资源
+```
+
+index.html标注
+```
+    <!-- build:css main.css -->
+    <link href="../../../lib/normalize/normalize.css" rel="stylesheet" />
+    <link href="../../../lib/animate/animate.css" rel="stylesheet" />
+    <link href="../../../dist/css/cut.css" rel="stylesheet" />
+    <link href="./memory.css" rel="stylesheet" />
+    <!-- endbuild -->
+
+    <!-- build:js main.js -->
+    <script src="../../../lib/zepto/zepto.js"></script>
+    <script src="../../../lib/zepto/data.js"></script>
+    <script src="../../../lib/zepto/touch.js"></script>
+    <script src="../../../src/js/support.js"></script>
+    <script src="../../../src/js/cut.js"></script>
+    <!-- endbuild -->
 ```
 
 
