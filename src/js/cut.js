@@ -34,7 +34,7 @@
             }
         });
 
-        $(global).on('touchstart', function (e) {
+        $(global).on('touchmove', function (e) {
             e.preventDefault();
         });
     }
